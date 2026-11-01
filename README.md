@@ -8,19 +8,11 @@ Two Ubuntu EC2 instances are used: one as the Ansible Control Node and another a
 
 Ansible automates Nginx installation, website file deployment, and service management through a reusable role-based structure.
 
-## Architecture
-
-The project uses two AWS EC2 instances:
-
-| EC2 Instance | Role | Purpose |
-|---|---|---|
-| Ansible-server | Control Node | Executes Ansible playbooks and manages the web server |
-| Portfolio-webserver | Managed Node | Hosts the static website using Nginx |
 
 ### Deployment Workflow
 
-1. Launch two Ubuntu EC2 instances on AWS.
-2. Configure SSH key-based authentication between the Ansible Control Node and Portfolio Web Server.
+1. Launch Ubuntu EC2 instances on AWS.
+2. Configure SSH key-based authentication.
 3. Create an Ansible inventory to identify the managed server.
 4. Create an Ansible role to organize deployment tasks.
 5. Update the APT package cache and install Nginx.
@@ -102,13 +94,13 @@ The project uses an Ansible Galaxy role named `portfolio` to organize the automa
 
 ## SSH Key-Based Authentication
 
-SSH key-based authentication was configured between the Ansible Control Node and the Portfolio Web Server.
+SSH key-based authentication was configured.
 
 This allows the control node to establish SSH connections to the managed node without entering an SSH account password for every connection.
 
 The authentication setup involved:
 
-1. Generating an SSH key pair on the Ansible Control Node.
+1. Generating an SSH key pair on the Node.
 2. Adding the public key to the managed server's `authorized_keys` file.
 3. Verifying passwordless SSH connectivity.
 4. Using the established SSH connection to execute Ansible playbooks.
@@ -139,7 +131,7 @@ The `site.yml` file calls the portfolio role.
 ```yaml
 ---
 - name: Run portfolio Role
-  hosts: portfolio_webserver
+  hosts: ansible-portfolio
   become: yes
 
   roles:
