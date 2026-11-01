@@ -1,0 +1,31 @@
+#SPDX-License-Identifier: MIT-0
+
+# tasks file for portfolio
+---
+- name: Update apt cache
+  apt:
+    update_cache: yes
+
+
+- name: Install Nginx web server
+  apt:
+    name: nginx
+    state: present
+
+
+- name: Ensure Nginx service is started and enabled
+  service:
+    name: nginx
+    state: started
+    enabled: yes
+
+
+- name: Deploy website files
+  copy:
+    src: portfolio/
+    dest: /var/www/html/
+    owner: root
+    group: root
+    mode: '0644'
+    directory_mode: '0755'
+  notify: Restart Nginx

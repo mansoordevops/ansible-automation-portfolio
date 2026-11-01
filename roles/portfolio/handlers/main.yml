@@ -1,0 +1,8 @@
+#SPDX-License-Identifier: MIT-0
+
+# handlers file for portfolio
+---
+- name: Restart Nginx
+  service:
+    name: nginx
+    state: restarted
