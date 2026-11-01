@@ -4,7 +4,7 @@
 
 This project demonstrates automated static website hosting on AWS EC2 using Ansible Roles and Nginx.
 
-Two Ubuntu EC2 instances are used: one as the Ansible Control Node and another as the Portfolio Web Server. SSH key-based authentication is configured between the servers, allowing the Ansible Control Node to manage the web server without requiring an SSH password for each connection.
+Ubuntu EC2 instances are used. SSH key-based authentication is configured in the server, allowing the Control Node to manage the web server without requiring an SSH password for each connection.
 
 Ansible automates Nginx installation, website file deployment, and service management through a reusable role-based structure.
 
@@ -70,9 +70,8 @@ ansible-project/
 │           └── main.yml
 │
 └── screenshots/
-    ├── ansible-playbook-execution.png
-    ├── aws-ec2-instances.png
-    └── website-live-deployment.png
+    ├── index.png
+    └── cli.png
 ```
 
 ## Ansible Role Explanation
@@ -116,7 +115,7 @@ The inventory file identifies the EC2 instance managed by Ansible.
 Example:
 
 ```ini
-[portfolio_webserver]
+[ansible-portfolio]
 YOUR_EC2_PUBLIC_IP ansible_user=ubuntu
 ```
 
